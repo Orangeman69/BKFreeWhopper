@@ -22,7 +22,7 @@ chrome_options.add_argument("--headless")
 #chrome_options.add_argument("--disable-dev-shm-usage")
 #chrome_options.add_argument("--log-level=3")
 #chrome_options.add_argument("--output=/dev/null")
-service = Service(executable_path='./chromedriver.exe')
+service = Service(executable_path='./chromedriver')
 driver = webdriver.Chrome(service=service, options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
