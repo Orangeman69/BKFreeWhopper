@@ -23,7 +23,7 @@ chrome_options.add_argument("--headless")
 #chrome_options.add_argument("--log-level=3")
 #chrome_options.add_argument("--output=/dev/null")
 service = Service(executable_path=ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
+driver = webdriver.Chrome(service=service, options=chrome_options,executable_path='./chromedriver.exe')
 wait = WebDriverWait(driver, 10)
 
 PESTI_UTI_CODE = 29175
