@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 from dotenv import load_dotenv
 from os import environ
+import os
 load_dotenv()
 
 chrome_options = Options()
@@ -24,7 +25,8 @@ chrome_options.add_argument("--no-sandbox")
 #chrome_options.add_argument("--disable-dev-shm-usage")
 #chrome_options.add_argument("--log-level=3")
 #chrome_options.add_argument("--output=/dev/null")
-service = Service(executable_path=environ.get("CHROMEDRIVER_PATH"))
+chromedriver_path = os.path.join(os.getcwd(),environ.get("CHROMEDRIVER_PATH"))
+service = Service(executable_path=chromedriver_path)
 driver = webdriver.Chrome(service=service, options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
