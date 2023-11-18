@@ -21,6 +21,7 @@
       justify-content: center;
     }
     .progressBar {
+      display: none;
       width: 100%;
       height: 20px;
       background-color: #fff;
@@ -33,35 +34,58 @@
       background-color: greenyellow;
       transition: width 1s ease-in-out;
     }
+    .button {
+      margin: 0;
+      padding: 12px 24px;
+      border: none;
+      background: none;
+      background-color: #74bdcb;
+      border-radius: 40px;
+      font-size: large;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #text {
+      display: none;
+    }
   </style>
   <body>
     <div class="progressBar">
       <div class="progress"></div>
     </div>
-    <h1>Your Code: <span id="whopper_code"></span></h1>
+    <h1 id="text">Your Code: <span id="whopper_code"></span></h1>
+    <button onclick="getWhopperCode()" class="button">Get Code</button>
     <script>
-      const endpoint = "/api/code";
-      const progressBar = document.querySelector(".progress");
-      const whopperCode = document.querySelector("#whopper_code");
-      const code = "BKWHOPPER";
-      let progress = 0;
-      let passedTime = 0;
-      const aproxxTime = 80000;
-      let codeInterval = setInterval(() => {
-        if (passedTime <= aproxxTime) {
-          progress = (passedTime / aproxxTime) * 100;
-          passedTime += 1000;
-          progressBar.style.width = `${progress}%`;
-        } else {
-          clearInterval(codeInterval);
-        }
-      }, 1000);
+      function getWhopperCode() {
+        const button = document.querySelector(".button");
+        const progressBarContainer = document.querySelector(".progressBar");
+        const text = document.querySelector("#text");
+        const progressBar = document.querySelector(".progress");
+        const whopperCode = document.querySelector("#whopper_code");
 
-      fetch(endpoint)
-        .then((res) => res.text())
-        .then((data) => {
-          whopperCode.innerText = data;
-        });
+        button.style.display = "none";
+        progressBarContainer.style.display = "block";
+        text.style.display = "block";
+
+        let progress = 0;
+        let passedTime = 0;
+        const aproxxTime = 80000;
+        let codeInterval = setInterval(() => {
+          if (passedTime <= aproxxTime) {
+            progress = (passedTime / aproxxTime) * 100;
+            passedTime += 1000;
+            progressBar.style.width = `${progress}%`;
+          } else {
+            clearInterval(codeInterval);
+          }
+        }, 1000);
+
+        fetch("/api/code")
+          .then((res) => res.text())
+          .then((data) => {
+            whopperCode.innerText = data;
+          });
+      }
     </script>
   </body>
 </html>
