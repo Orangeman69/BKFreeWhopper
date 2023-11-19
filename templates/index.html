@@ -82,9 +82,9 @@
         }, 1000);
 
         fetch("/api/code")
-          .then((res) => res.text())
+          .then((res) => res.json())
           .then((data) => {
-            whopperCode.innerText = data;
+            whopperCode.innerText = data.code;
           });
       }
     </script>
