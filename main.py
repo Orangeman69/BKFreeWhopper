@@ -16,5 +16,9 @@ def code():
     whopperCode = getWhopperCode()
     return jsonify({"code":whopperCode})
 
+@app.route('/api/test', methods=['GET'])
+def test():
+    return jsonify({"code":"test12345"})
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000 if environ.get("MODE") == "dev" else 80)
