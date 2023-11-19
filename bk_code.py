@@ -12,35 +12,38 @@ from os import environ
 import os
 load_dotenv()
 
-chrome_options = Options()
-chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-chrome_options.add_argument("--headless")
-#chrome_options.add_argument("--window-size=1920,1080")
-chrome_options.add_argument("--no-sandbox")
-#chrome_options.add_argument("--disable-gpu")
-#chrome_options.add_argument("--disable-crash-reporter")
-#chrome_options.add_argument("--disable-extensions")
-#chrome_options.add_argument("--disable-in-process-stack-traces")
-#chrome_options.add_argument("--disable-logging")
-#chrome_options.add_argument("--disable-dev-shm-usage")
-#chrome_options.add_argument("--log-level=3")
-#chrome_options.add_argument("--output=/dev/null")
-chromedriver_path = os.path.join(os.getcwd(),environ.get("CHROMEDRIVER_PATH"))
-service = Service(executable_path=chromedriver_path)
-driver = webdriver.Chrome(service=service, options=chrome_options)
-wait = WebDriverWait(driver, 10)
-
 PESTI_UTI_CODE = 29175
-
-def pressNextButton():
-    button =  wait.until(EC.element_to_be_clickable((By.ID, 'NextButton')))
-    button.click()
-
-def waitUntilPageLoaded():
-    sleep(3)
 
 def getWhopperCode():
     try:
+        chrome_options = Options()
+        chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        chrome_options.add_argument("--headless")
+        #chrome_options.add_argument("--window-size=1920,1080")
+        chrome_options.add_argument("--no-sandbox")
+        #chrome_options.add_argument("--disable-gpu")
+        #chrome_options.add_argument("--disable-crash-reporter")
+        #chrome_options.add_argument("--disable-extensions")
+        #chrome_options.add_argument("--disable-in-process-stack-traces")
+        #chrome_options.add_argument("--disable-logging")
+        #chrome_options.add_argument("--disable-dev-shm-usage")
+        #chrome_options.add_argument("--log-level=3")
+        #chrome_options.add_argument("--output=/dev/null")
+        chromedriver_path = os.path.join(os.getcwd(),environ.get("CHROMEDRIVER_PATH"))
+        service = Service(executable_path=chromedriver_path)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        wait = WebDriverWait(driver, 10)
+
+        
+        def pressNextButton():
+            button =  wait.until(EC.element_to_be_clickable((By.ID, 'NextButton')))
+            button.click()
+
+
+        def waitUntilPageLoaded():
+            sleep(3)
+
+                
         driver.get("https://www.burgerkingelmenyem.hu/")
         driver.switch_to.frame(driver.find_element(By.CLASS_NAME, 'Home_iframe__T3nfU'))
         input_field = wait.until(EC.presence_of_element_located((By.ID, 'QR\~QID4')))
