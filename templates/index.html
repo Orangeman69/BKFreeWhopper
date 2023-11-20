@@ -52,32 +52,20 @@
     <script>
       function getWhopperCode() {
         const button = document.querySelector(".button");
-        const progressBarContainer = document.querySelector(".progressBar");
+        const progressBar = document.querySelector(".progressBar");
         const text = document.querySelector("#text");
         const progressBar = document.querySelector(".progress");
         const whopperCode = document.querySelector("#whopper_code");
 
         button.style.display = "none";
-        progressBarContainer.style.display = "block";
+        progressBar.style.display = "block";
         text.style.display = "block";
-
-        let progress = 0;
-        let passedTime = 0;
-        const aproxxTime = 80000;
-        let codeInterval = setInterval(() => {
-          if (passedTime <= aproxxTime) {
-            progress = (passedTime / aproxxTime) * 100;
-            passedTime += 1000;
-            progressBar.style.width = `${progress}%`;
-          } else {
-            clearInterval(codeInterval);
-          }
-        }, 1000);
 
         fetch("/api/code")
           .then((res) => res.json())
           .then((data) => {
             whopperCode.innerText = data.code;
+			progressBar.style.display = "none";
           });
       }
     </script>
