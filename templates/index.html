@@ -47,7 +47,7 @@
 </circle>
 </svg>
     </div>
-    <h1 id="text">Your Code: <span id="whopper_code"></span></h1>
+    <h1 id="text"><span id="whopper_code"></span></h1>
     <button onclick="getWhopperCode()" class="button">Get Code</button>
     <script>
       function getWhopperCode() {
@@ -57,14 +57,14 @@
         const whopperCode = document.querySelector("#whopper_code");
 
         button.style.display = "none";
-        progressBar.style.display = "block";
-        text.style.display = "block";
+        progressBar.style.display = "block";      
 
         fetch("/api/code")
           .then((res) => res.json())
           .then((data) => {
             whopperCode.innerText = data.code;
 			progressBar.style.display = "none";
+			  text.style.display = "block";
           });
       }
     </script>
