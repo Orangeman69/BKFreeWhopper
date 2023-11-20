@@ -22,17 +22,6 @@
     }
     .progressBar {
       display: none;
-      width: 100%;
-      height: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .progressBar .progress {
-      width: 0%;
-      height: 100%;
-      background-color: greenyellow;
-      transition: width 1s ease-in-out;
     }
     .button {
       margin: 0;
@@ -52,7 +41,11 @@
   </style>
   <body>
     <div class="progressBar">
-      <div class="progress"></div>
+	   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgba(255, 255, 255,0); display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<circle cx="50" cy="50" r="24" stroke-width="7" stroke="#93dbe9" stroke-dasharray="37.69911184307752 37.69911184307752" fill="none" stroke-linecap="round">
+  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+</circle>
+</svg>
     </div>
     <h1 id="text">Your Code: <span id="whopper_code"></span></h1>
     <button onclick="getWhopperCode()" class="button">Get Code</button>
